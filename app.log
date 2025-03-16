@@ -1,0 +1,50 @@
+2025-03-16 14:17:11,700 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:17:12,631 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:17:12,750 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:17:12,887 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:17:13,342 - httpx - INFO - HTTP Request: GET https://api.gradio.app/v3/tunnel-request "HTTP/1.1 200 OK"
+2025-03-16 14:17:13,589 - httpx - INFO - HTTP Request: GET https://cdn-media.huggingface.co/frpc-gradio-0.3/frpc_windows_amd64.exe "HTTP/1.1 200 OK"
+2025-03-16 14:18:22,759 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:18:23,655 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:18:23,682 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:18:23,787 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:18:45,183 - root - ERROR - トピック取得中にエラーが発生しました: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31424 and this is thread id 55604.
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 70, in get_topics
+    topics = self.app_service.get_topics()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 68, in get_topics
+    return self.topic_repo.get_all()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\repositories\topic_repository.py", line 83, in get_all
+    cursor = conn.cursor()
+             ^^^^^^^^^^^^^
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31424 and this is thread id 55604.
+2025-03-16 14:19:28,824 - root - ERROR - トピック作成中にエラーが発生しました: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31424 and this is thread id 55604.
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 50, in create_topic
+    topic = self.app_service.create_topic(title, description)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 59, in create_topic
+    return self.topic_repo.create(topic)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\repositories\topic_repository.py", line 32, in create
+    cursor = conn.cursor()
+             ^^^^^^^^^^^^^
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31424 and this is thread id 55604.
+2025-03-16 14:20:20,911 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:20:21,792 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:20:21,818 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:20:21,896 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:20:24,386 - root - ERROR - トピック取得中にエラーが発生しました: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 30408 and this is thread id 41884.
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 70, in get_topics
+    topics = self.app_service.get_topics()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 68, in get_topics
+    return self.topic_repo.get_all()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\repositories\topic_repository.py", line 83, in get_all
+    cursor = conn.cursor()
+             ^^^^^^^^^^^^^
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 30408 and this is thread id 41884.
