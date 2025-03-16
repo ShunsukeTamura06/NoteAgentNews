@@ -147,3 +147,149 @@ ValueError: Note投稿サービスが設定されていません
 2025-03-16 15:14:56,973 - root - INFO - 記事タイトル: 地下鉄サリン事件：無差別テロの衝撃とその影響
 2025-03-16 15:14:56,974 - root - INFO - セクション数: 20
 2025-03-16 15:15:01,065 - root - INFO - noteへのログインを開始します
+2025-03-16 15:34:50,640 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 15:34:50,642 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:34:51,559 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:34:51,584 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:34:51,890 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:37:55,482 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 15:37:55,483 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:37:56,384 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:37:56,410 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:37:56,480 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:42:40,221 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 15:42:40,222 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:42:41,363 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:44:58,750 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 15:44:58,751 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:44:59,930 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:45:16,746 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 15:45:16,747 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:45:17,590 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:45:17,691 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:45:17,760 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:46:02,777 - root - INFO - 記事ID 6 は既に投稿済みです
+2025-03-16 18:21:55,916 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 18:21:55,917 - root - INFO - データベースの初期化が完了しました
+2025-03-16 18:21:56,813 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 18:21:56,845 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 18:21:56,930 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 18:23:44,909 - root - INFO - トピック「石破総理の商品券問題」の情報を検索します
+2025-03-16 18:23:52,706 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 18:24:20,764 - root - INFO - トピック「石破総理の商品券問題」の記事を作成します
+2025-03-16 18:24:38,396 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 18:25:09,444 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」を改善します
+2025-03-16 18:25:28,212 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 18:25:37,270 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 18:25:37,271 - root - INFO - Markdown記事を解析中
+2025-03-16 18:25:37,271 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 18:25:37,272 - root - INFO - セクション数: 18
+2025-03-16 18:25:37,837 - root - INFO - noteへのログインを開始します
+2025-03-16 18:46:11,826 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 18:46:11,827 - root - INFO - データベースの初期化が完了しました
+2025-03-16 18:46:12,738 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 18:46:12,782 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 18:46:12,837 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 18:46:29,300 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 18:46:29,300 - root - INFO - Markdown記事を解析中
+2025-03-16 18:51:45,500 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 18:51:45,501 - root - INFO - データベースの初期化が完了しました
+2025-03-16 18:51:46,378 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 18:51:46,414 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 18:51:46,818 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 18:51:59,932 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 18:51:59,932 - root - INFO - Markdown記事を解析中
+2025-03-16 18:52:50,462 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 19:02:24,641 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 19:02:24,642 - root - INFO - データベースの初期化が完了しました
+2025-03-16 19:02:25,539 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 19:02:25,568 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 19:02:25,666 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 19:02:37,320 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 19:02:37,320 - root - INFO - Markdown記事を解析中
+2025-03-16 19:02:50,626 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 19:03:29,444 - root - INFO - セクション数: 17
+2025-03-16 19:03:40,683 - root - INFO - noteへのログインを開始します
+2025-03-16 19:30:12,605 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 19:30:12,607 - root - INFO - データベースの初期化が完了しました
+2025-03-16 19:30:13,461 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 19:30:13,495 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 19:30:13,760 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 19:30:27,785 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 19:30:27,786 - root - INFO - Markdown記事を解析中
+2025-03-16 19:30:32,909 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 19:30:40,834 - root - INFO - セクション数: 17
+2025-03-16 19:30:45,889 - root - INFO - noteへのログインを開始します
+2025-03-16 19:32:26,417 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 19:32:26,419 - root - INFO - データベースの初期化が完了しました
+2025-03-16 19:32:27,293 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 19:32:27,323 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 19:32:27,438 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 19:33:25,984 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 19:33:25,985 - root - INFO - Markdown記事を解析中
+2025-03-16 19:33:25,986 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 19:33:25,987 - root - INFO - セクション数: 17
+2025-03-16 19:33:26,797 - root - INFO - noteへのログインを開始します
+2025-03-16 19:34:53,939 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 19:34:53,940 - root - INFO - データベースの初期化が完了しました
+2025-03-16 19:34:54,784 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 19:34:54,815 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 19:34:55,028 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 19:35:04,444 - root - INFO - 記事「石破首相の商品券配布問題の深層に迫る」をNoteに投稿します
+2025-03-16 19:35:04,445 - root - INFO - Markdown記事を解析中
+2025-03-16 19:35:04,445 - root - INFO - 記事タイトル: 石破首相の商品券配布問題の深層に迫る
+2025-03-16 19:35:04,446 - root - INFO - セクション数: 17
+2025-03-16 19:35:07,714 - root - INFO - noteへのログインを開始します
+2025-03-16 19:39:26,252 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 19:39:26,253 - root - INFO - データベースの初期化が完了しました
+2025-03-16 19:39:27,095 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 19:39:27,126 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 19:39:28,473 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 19:39:36,905 - root - INFO - 記事ID 7 は既に投稿済みです
+2025-03-16 19:40:12,249 - root - INFO - トピック「3億円事件」の情報を検索します
+2025-03-16 19:40:21,968 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 19:40:24,184 - root - INFO - トピック「3億円事件」の記事を作成します
+2025-03-16 19:40:42,730 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 19:40:46,381 - root - INFO - 記事「三億円事件：日本犯罪史の裏側を探る」を改善します
+2025-03-16 19:41:04,038 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 19:41:23,296 - root - INFO - 記事「三億円事件：日本犯罪史の裏側を探る」をNoteに投稿します
+2025-03-16 19:41:23,297 - root - INFO - Markdown記事を解析中
+2025-03-16 19:41:23,297 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史の裏側を探る
+2025-03-16 19:41:23,298 - root - INFO - セクション数: 17
+2025-03-16 19:41:23,893 - root - INFO - noteへのログインを開始します
+2025-03-16 20:17:53,956 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 20:17:53,957 - root - INFO - データベースの初期化が完了しました
+2025-03-16 20:17:54,816 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 20:17:54,849 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 20:17:54,999 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 20:18:39,398 - root - INFO - トピック「3億円事件」の情報を検索します
+2025-03-16 20:18:50,937 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 20:25:22,261 - root - INFO - トピック「3億円事件」の記事を作成します
+2025-03-16 20:25:40,536 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 20:26:28,826 - root - INFO - 記事「三億円事件：日本犯罪史最大のミステリーを追う」を改善します
+2025-03-16 20:26:57,324 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 20:27:17,938 - root - INFO - 記事「三億円事件：日本犯罪史最大のミステリーを追う」をNoteに投稿します
+2025-03-16 20:27:17,939 - root - INFO - Markdown記事を解析中
+2025-03-16 20:27:17,939 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史最大のミステリーを追う
+2025-03-16 20:27:17,940 - root - INFO - セクション数: 12
+2025-03-16 20:27:18,692 - root - INFO - noteへのログインを開始します
+2025-03-16 20:29:29,612 - root - INFO - 記事「三億円事件：日本犯罪史最大のミステリーを追う」をNoteに投稿します
+2025-03-16 20:29:29,613 - root - INFO - Markdown記事を解析中
+2025-03-16 20:29:29,613 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史最大のミステリーを追う
+2025-03-16 20:29:29,613 - root - INFO - セクション数: 12
+2025-03-16 20:29:30,147 - root - INFO - noteへのログインを開始します
+2025-03-16 20:30:08,443 - root - INFO - 記事「三億円事件：日本犯罪史最大のミステリーを追う」をNoteに投稿します
+2025-03-16 20:30:08,443 - root - INFO - Markdown記事を解析中
+2025-03-16 20:30:08,444 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史最大のミステリーを追う
+2025-03-16 20:30:08,444 - root - INFO - セクション数: 12
+2025-03-16 20:30:09,024 - root - INFO - noteへのログインを開始します
+2025-03-16 20:32:15,251 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 20:32:15,252 - root - INFO - データベースの初期化が完了しました
+2025-03-16 20:32:16,109 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 20:32:16,138 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 20:32:16,258 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 20:32:23,837 - root - INFO - 記事「三億円事件：日本犯罪史最大のミステリーを追う」をNoteに投稿します
+2025-03-16 20:32:23,837 - root - INFO - Markdown記事を解析中
+2025-03-16 20:32:23,838 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史最大のミステリーを追う
+2025-03-16 20:32:23,839 - root - INFO - セクション数: 12
+2025-03-16 20:32:24,687 - root - INFO - noteへのログインを開始します

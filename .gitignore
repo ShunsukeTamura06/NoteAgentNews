@@ -11,3 +11,4 @@ wheels/
 news_reports.db
 .env
 app.log
+app.log

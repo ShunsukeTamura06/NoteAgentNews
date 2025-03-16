@@ -24,6 +24,11 @@ class NotePosterService:
         self.email = email
         self.password = password
 
+    def remove_markdown_block(self, text: str) -> str:
+        # ```markdown で始まり、``` で終わるブロックを削除
+        cleaned_text = re.sub(r"```markdown\n(.*?)```", r"\1", text, flags=re.DOTALL)
+        return cleaned_text
+
     def parse_markdown(self, markdown_content: str) -> tuple:
         """
         Markdown形式の記事を解析してタイトルとセクションに分割
@@ -35,6 +40,8 @@ class NotePosterService:
             tuple: (タイトル, セクションのリスト)
         """
         logging.info("Markdown記事を解析中")
+
+        markdown_content = self.remove_markdown_block(markdown_content)
 
         # 最初の# で始まる行をタイトルとして扱う
         title_match = re.search(r"^# (.+)", markdown_content, re.MULTILINE)
@@ -65,7 +72,7 @@ class NotePosterService:
 
             # 見出しを追加
             heading_level = len(match.group(1))
-            heading_text = match.group(2).strip()
+            heading_text = match.group(1) + " " + match.group(2).strip()
             sections.append(
                 {"type": f"heading{heading_level}", "content": heading_text}
             )
@@ -112,12 +119,16 @@ class NotePosterService:
                 page.goto("https://note.com/login")
                 page.wait_for_selector("#email", timeout=10000)
                 page.wait_for_selector("#password", timeout=10000)
+                page.wait_for_load_state("networkidle")
                 time.sleep(1)
+
                 page.fill("#email", self.email)
                 page.fill("#password", self.password)
+                time.sleep(1)
                 page.click('button:has(div:has-text("ログイン"))')
                 page.wait_for_load_state("networkidle")
                 logging.info("✅ noteにログイン成功")
+                time.sleep(1)
 
                 # 新規記事作成ページにアクセス
                 logging.info("📝 noteの新規記事作成ページにアクセス中...")
@@ -142,7 +153,7 @@ class NotePosterService:
                         page.keyboard.press("Control+V")
                         page.keyboard.press("Enter")
                         page.keyboard.press("Enter")
-                        time.sleep(0.5)
+
                     elif section_type.startswith("heading"):
                         # 見出しを入力
                         level = int(section_type[-1])
@@ -155,20 +166,7 @@ class NotePosterService:
                         page.keyboard.press("Control+V")
                         page.keyboard.press("Enter")
 
-                        # 見出しとして設定
-                        if level == 1:
-                            # 見出し1は自動的に設定されることが多い
-                            pass
-                        elif level == 2:
-                            # 見出し2に設定
-                            page.keyboard.press("ArrowUp")
-                            page.keyboard.press("Control+Alt+2")
-                        elif level == 3:
-                            # 見出し3に設定
-                            page.keyboard.press("ArrowUp")
-                            page.keyboard.press("Control+Alt+3")
-
-                        time.sleep(0.5)
+                    time.sleep(0.5)
 
                 # 記事を下書き保存
                 logging.info("💾 記事を下書きとして保存します")

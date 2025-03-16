@@ -11,6 +11,7 @@
 
 # main.py
 import logging
+import os
 
 from config import Config
 from repositories.article_repository import ArticleRepository
@@ -35,12 +36,22 @@ def setup_logging():
 
 def init_services():
     """サービスの初期化"""
+    # 設定ファイルがあれば読み込む
+    if os.path.exists(Config.SETTINGS_FILE):
+        settings = Config.load_from_file()
+        # 設定を更新
+        for key, value in settings.items():
+            if hasattr(Config, key):
+                setattr(Config, key, value)
+                # 環境変数も設定
+                os.environ[key] = str(value) if value is not None else ""
+
     # 設定の検証
     try:
         Config.validate()
     except ValueError as e:
-        logging.error(f"設定エラー: {e}")
-        exit(1)
+        logging.warning(f"設定に問題があります: {e}")
+        # 設定に問題があっても起動を続行する
 
     # データベース接続
     db_manager = DatabaseManager(Config.DB_PATH)
@@ -76,6 +87,8 @@ def main():
     """メイン処理"""
     # ログ設定
     setup_logging()
+
+    logging.info("ニュース記事自動生成システムを起動します")
 
     # サービス初期化
     app_service = init_services()
