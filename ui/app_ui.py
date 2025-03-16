@@ -1,6 +1,6 @@
 # ui/app_ui.py
 import logging
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple, Union
 
 import gradio as gr
 
@@ -134,12 +134,12 @@ class AppUI:
             logging.error(f"記事作成中にエラーが発生しました: {str(e)}", exc_info=True)
             return {"success": False, "message": f"エラー: {str(e)}"}
 
-    def improve_article(self, article_id: int) -> Dict[str, Any]:
+    def improve_article(self, article_id: Union[int, Dict[str, Any]]) -> Dict[str, Any]:
         """
         記事改善UIハンドラ
 
         Args:
-            article_id: 記事ID
+            article_id: 記事ID (整数またはID情報を含む辞書)
 
         Returns:
             Dict: 処理結果
@@ -148,7 +148,14 @@ class AppUI:
             if not article_id:
                 return {"success": False, "message": "記事を選択してください"}
 
-            improved_article = self.app_service.improve_article(int(article_id))
+            # article_id が辞書の場合は、idキーからIDを取得
+            if isinstance(article_id, dict) and "article_id" in article_id:
+                actual_id = article_id["article_id"]
+            else:
+                actual_id = article_id
+
+            # 型変換
+            improved_article = self.app_service.improve_article(int(actual_id))
             return {
                 "success": True,
                 "message": f"記事「{improved_article.title}」を改善しました",
@@ -159,12 +166,12 @@ class AppUI:
             logging.error(f"記事改善中にエラーが発生しました: {str(e)}", exc_info=True)
             return {"success": False, "message": f"エラー: {str(e)}"}
 
-    def post_to_note(self, article_id: int) -> Dict[str, Any]:
+    def post_to_note(self, article_id: Union[int, Dict[str, Any]]) -> Dict[str, Any]:
         """
         Note投稿UIハンドラ
 
         Args:
-            article_id: 記事ID
+            article_id: 記事ID (整数またはID情報を含む辞書)
 
         Returns:
             Dict: 処理結果
@@ -173,7 +180,13 @@ class AppUI:
             if not article_id:
                 return {"success": False, "message": "記事を選択してください"}
 
-            success = self.app_service.post_article_to_note(int(article_id))
+            # article_id が辞書の場合は、idキーからIDを取得
+            if isinstance(article_id, dict) and "article_id" in article_id:
+                actual_id = article_id["article_id"]
+            else:
+                actual_id = article_id
+
+            success = self.app_service.post_article_to_note(int(actual_id))
             if success:
                 return {"success": True, "message": "記事をNoteに投稿しました"}
             else:
@@ -194,7 +207,7 @@ class AppUI:
             post_to_note: Noteに投稿するかどうか
 
         Returns:
-            Dict: 処理結果
+            Dict: プロセスの結果情報
         """
         try:
             if not title:
@@ -287,8 +300,16 @@ class AppUI:
                             label="記事プレビュー", elem_id="step-article-output"
                         )
 
-            # 全自動処理
-            def format_full_process_result(result):
+            # 辞書結果を文字列に変換する関数
+            def format_topic_status(result: Dict[str, Any]) -> str:
+                """辞書結果を文字列に変換"""
+                if result.get("success"):
+                    return f"✅ {result['message']}"
+                else:
+                    return f"❌ {result['message']}"
+
+            # 全プロセス結果を文字列に変換する関数
+            def format_full_process_result(result: Dict[str, Any]) -> Tuple[str, str]:
                 """全プロセス結果を文字列に変換し、記事内容も返す"""
                 message = result.get("message", "")
                 if isinstance(message, list):
@@ -296,27 +317,14 @@ class AppUI:
                 article_content = result.get("article_content", "")
                 return message, article_content
 
+            # 全自動処理
             run_btn.click(
                 fn=lambda title, desc, post: format_full_process_result(
                     self.run_full_process(title, desc, post)
                 ),
                 inputs=[title_input, desc_input, note_post_checkbox],
                 outputs=[status_output, article_output],
-            ).then(
-                fn=lambda result: gr.update(visible=True)
-                if result.get("success")
-                else gr.update(visible=False),
-                inputs=status_output,
-                outputs=article_output,
             )
-
-            # ステップ実行
-            def format_topic_status(result):
-                """辞書結果を文字列に変換"""
-                if result.get("success"):
-                    return f"✅ {result['message']}"
-                else:
-                    return f"❌ {result['message']}"
 
             # ステップ実行
             create_topic_btn.click(
@@ -342,13 +350,19 @@ class AppUI:
             )
 
             def create_article_and_update(topic_id):
+                """記事作成関数 - 記事IDを直接返すよう修正"""
                 result = self.create_article(topic_id)
                 message = format_topic_status(result)  # 表示用メッセージを生成
                 content = (
                     result.get("article_content", "") if result.get("success") else ""
                 )
-                # 元の結果も返す
-                return message, content, result
+
+                # 記事IDを直接取得する（辞書全体を渡さない）
+                article_id = None
+                if result.get("success") and "article_id" in result:
+                    article_id = result["article_id"]
+
+                return message, content, article_id
 
             # 記事IDを保持するための状態変数
             article_id_state = gr.State(None)
@@ -360,10 +374,26 @@ class AppUI:
             )
 
             def improve_article_and_update(article_id):
-                result = self.improve_article(article_id)
-                if result.get("success"):
-                    return result["message"], result.get("improved_content", "")
-                return result["message"], ""
+                """記事改善関数 - article_idの型チェックを追加"""
+                if not article_id:
+                    return "❌ 記事が選択されていません", ""
+
+                # article_id が辞書の場合に処理
+                if isinstance(article_id, dict) and "article_id" in article_id:
+                    article_id = article_id["article_id"]
+
+                try:
+                    result = self.improve_article(article_id)
+                    message = format_topic_status(result)
+                    content = (
+                        result.get("improved_content", "")
+                        if result.get("success")
+                        else ""
+                    )
+                    return message, content
+                except Exception as e:
+                    logging.error(f"記事改善処理でエラー: {str(e)}", exc_info=True)
+                    return f"❌ エラー: {str(e)}", ""
 
             improve_article_btn.click(
                 fn=improve_article_and_update,
@@ -371,16 +401,29 @@ class AppUI:
                 outputs=[improve_status, step_article_output],
             )
 
+            def post_to_note_and_update(article_id):
+                """Note投稿関数 - article_idの型チェックを追加"""
+                if not article_id:
+                    return "❌ 記事が選択されていません"
+
+                # article_id が辞書の場合に処理
+                if isinstance(article_id, dict) and "article_id" in article_id:
+                    article_id = article_id["article_id"]
+
+                try:
+                    result = self.post_to_note(article_id)
+                    return format_topic_status(result)
+                except Exception as e:
+                    logging.error(f"記事投稿処理でエラー: {str(e)}", exc_info=True)
+                    return f"❌ エラー: {str(e)}"
+
             post_note_btn.click(
-                fn=lambda article_id: format_topic_status(
-                    self.post_to_note(article_id)
-                ),
+                fn=post_to_note_and_update,
                 inputs=article_id_state,
                 outputs=post_status,
             )
 
             # 初期化時にトピック一覧を更新
-            app.load(fn=update_topics_dropdown, outputs=topic_dropdown)
 
         # Gradioアプリを起動
         app.launch(share=False)

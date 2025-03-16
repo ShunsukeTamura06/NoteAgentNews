@@ -100,3 +100,50 @@ TypeError: int() argument must be a string, a bytes-like object or a real number
 2025-03-16 14:54:23,764 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
 2025-03-16 14:57:29,268 - root - INFO - データベースの初期化が完了しました
 2025-03-16 14:57:30,336 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:03:43,013 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:03:43,924 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:03:43,949 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:03:43,962 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:04:08,127 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 15:04:18,285 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:04:21,303 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 15:04:36,017 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:04:44,498 - root - ERROR - 記事改善中にエラーが発生しました: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 151, in improve_article
+    improved_article = self.app_service.improve_article(int(article_id))
+                                                        ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+2025-03-16 15:08:02,141 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:08:03,088 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:08:03,115 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:08:03,197 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:08:18,385 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 15:08:28,746 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:08:32,984 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 15:08:53,801 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:09:03,853 - root - INFO - 記事「地下鉄サリン事件」を改善します
+2025-03-16 15:09:18,189 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:09:36,590 - root - ERROR - Note投稿中にエラーが発生しました: Note投稿サービスが設定されていません
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 189, in post_to_note
+    success = self.app_service.post_article_to_note(int(actual_id))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 139, in post_article_to_note
+    raise ValueError("Note投稿サービスが設定されていません")
+ValueError: Note投稿サービスが設定されていません
+2025-03-16 15:13:15,421 - root - INFO - データベースの初期化が完了しました
+2025-03-16 15:13:16,301 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 15:13:16,327 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 15:13:16,951 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 15:14:01,390 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 15:14:11,479 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:14:13,424 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 15:14:33,371 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:14:35,912 - root - INFO - 記事「地下鉄サリン事件：無差別テロの衝撃とその影響」を改善します
+2025-03-16 15:14:51,080 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 15:14:56,971 - root - INFO - 記事「地下鉄サリン事件：無差別テロの衝撃とその影響」をNoteに投稿します
+2025-03-16 15:14:56,972 - root - INFO - Markdown記事を解析中
+2025-03-16 15:14:56,973 - root - INFO - 記事タイトル: 地下鉄サリン事件：無差別テロの衝撃とその影響
+2025-03-16 15:14:56,974 - root - INFO - セクション数: 20
+2025-03-16 15:15:01,065 - root - INFO - noteへのログインを開始します

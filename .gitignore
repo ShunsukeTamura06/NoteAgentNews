@@ -9,3 +9,5 @@ wheels/
 # Virtual environments
 .venv
 news_reports.db
+.env
+app.log
