@@ -27,16 +27,17 @@ class DatabaseManager:
         Returns:
             sqlite3.Connection: データベース接続
         """
-        if self.conn is None:
-            self.conn = sqlite3.connect(self.db_path)
-            self.conn.row_factory = sqlite3.Row
-        return self.conn
+        # スレッドセーフな接続を新規に作成
+        # check_same_thread=False で別スレッドからのアクセスを許可
+        conn = sqlite3.connect(self.db_path, check_same_thread=False)
+        conn.row_factory = sqlite3.Row
+        return conn
 
     def close_connection(self) -> None:
         """データベース接続を閉じる"""
-        if self.conn is not None:
-            self.conn.close()
-            self.conn = None
+        # 接続はget_connectionで毎回新規作成するため、
+        # このメソッドは必要ないが互換性のために残しておく
+        pass
 
     def initialize_database(self) -> None:
         """データベースのテーブルを初期化"""

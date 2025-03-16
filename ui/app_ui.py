@@ -309,7 +309,7 @@ class AppUI:
 
             def update_topics_dropdown():
                 topics = self.get_topics()
-                return gr.Dropdown.update(
+                return gr.update(
                     choices=[(f"{t['id']}: {t['title']}", t["id"]) for t in topics]
                 )
 
