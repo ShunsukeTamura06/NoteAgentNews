@@ -288,8 +288,18 @@ class AppUI:
                         )
 
             # 全自動処理
+            def format_full_process_result(result):
+                """全プロセス結果を文字列に変換し、記事内容も返す"""
+                message = result.get("message", "")
+                if isinstance(message, list):
+                    message = "\n".join(message)
+                article_content = result.get("article_content", "")
+                return message, article_content
+
             run_btn.click(
-                fn=self.run_full_process,
+                fn=lambda title, desc, post: format_full_process_result(
+                    self.run_full_process(title, desc, post)
+                ),
                 inputs=[title_input, desc_input, note_post_checkbox],
                 outputs=[status_output, article_output],
             ).then(
@@ -301,8 +311,18 @@ class AppUI:
             )
 
             # ステップ実行
+            def format_topic_status(result):
+                """辞書結果を文字列に変換"""
+                if result.get("success"):
+                    return f"✅ {result['message']}"
+                else:
+                    return f"❌ {result['message']}"
+
+            # ステップ実行
             create_topic_btn.click(
-                fn=self.create_topic,
+                fn=lambda title, desc: format_topic_status(
+                    self.create_topic(title, desc)
+                ),
                 inputs=[step_title_input, step_desc_input],
                 outputs=topic_status,
             )
@@ -316,33 +336,27 @@ class AppUI:
             refresh_topics_btn.click(fn=update_topics_dropdown, outputs=topic_dropdown)
 
             collect_news_btn.click(
-                fn=self.collect_news, inputs=topic_dropdown, outputs=news_status
+                fn=lambda topic_id: format_topic_status(self.collect_news(topic_id)),
+                inputs=topic_dropdown,
+                outputs=news_status,
             )
 
             def create_article_and_update(topic_id):
                 result = self.create_article(topic_id)
-                if result.get("success"):
-                    return result["message"], result.get("article_content", "")
-                return result["message"], ""
-
-            create_article_btn.click(
-                fn=create_article_and_update,
-                inputs=topic_dropdown,
-                outputs=[article_status, step_article_output],
-            )
+                message = format_topic_status(result)  # 表示用メッセージを生成
+                content = (
+                    result.get("article_content", "") if result.get("success") else ""
+                )
+                # 元の結果も返す
+                return message, content, result
 
             # 記事IDを保持するための状態変数
             article_id_state = gr.State(None)
 
-            def update_article_id_state(result, article_id_state):
-                if result.get("success") and "article_id" in result:
-                    return result.get("article_id")
-                return article_id_state
-
             create_article_btn.click(
-                fn=lambda result, state: update_article_id_state(result, state),
-                inputs=[article_status, article_id_state],
-                outputs=article_id_state,
+                fn=create_article_and_update,
+                inputs=topic_dropdown,
+                outputs=[article_status, step_article_output, article_id_state],
             )
 
             def improve_article_and_update(article_id):
@@ -358,7 +372,11 @@ class AppUI:
             )
 
             post_note_btn.click(
-                fn=self.post_to_note, inputs=article_id_state, outputs=post_status
+                fn=lambda article_id: format_topic_status(
+                    self.post_to_note(article_id)
+                ),
+                inputs=article_id_state,
+                outputs=post_status,
             )
 
             # 初期化時にトピック一覧を更新

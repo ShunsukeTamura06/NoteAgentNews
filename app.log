@@ -52,3 +52,51 @@ sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in
 2025-03-16 14:28:23,268 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
 2025-03-16 14:28:23,297 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
 2025-03-16 14:28:23,388 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:38:30,480 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:38:31,370 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:38:31,398 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:38:31,476 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:39:00,556 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 14:39:00,558 - root - ERROR - ニュース収集中にエラーが発生しました: Completions.create() got an unexpected keyword argument 'web_search_options'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 100, in collect_news
+    news_data = self.app_service.collect_news_for_topic(int(topic_id))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 84, in collect_news_for_topic
+    news_data = self.search_service.search_topic(topic)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\search_service.py", line 38, in search_topic
+    completion = self.client.chat.completions.create(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\shuns\AppData\Local\Programs\Python\Python311\Lib\site-packages\openai\_utils\_utils.py", line 279, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Completions.create() got an unexpected keyword argument 'web_search_options'
+2025-03-16 14:40:05,972 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:40:06,867 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:40:06,882 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:40:06,895 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:40:20,078 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 14:40:32,035 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:40:40,398 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 14:40:57,724 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:45:26,437 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:45:27,376 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 14:45:27,403 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 14:45:27,525 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:45:47,495 - root - INFO - トピック「地下鉄サリン事件」の情報を検索します
+2025-03-16 14:45:56,479 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:46:06,215 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 14:46:16,484 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:46:16,527 - root - INFO - トピック「地下鉄サリン事件」の記事を作成します
+2025-03-16 14:46:29,278 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 14:46:46,073 - root - ERROR - 記事改善中にエラーが発生しました: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 151, in improve_article
+    improved_article = self.app_service.improve_article(int(article_id))
+                                                        ^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'dict'
+2025-03-16 14:54:22,579 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:54:23,764 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 14:57:29,268 - root - INFO - データベースの初期化が完了しました
+2025-03-16 14:57:30,336 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
