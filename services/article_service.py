@@ -55,7 +55,9 @@ class ArticleService:
         {article}
         """
 
-    def create_article_from_news(self, topic: Topic, news_data: NewsData) -> Article:
+    async def create_article_from_news(
+        self, topic: Topic, news_data: NewsData
+    ) -> Article:
         """
         ニュースデータから記事を作成
 

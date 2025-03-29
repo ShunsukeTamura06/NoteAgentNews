@@ -20,7 +20,6 @@ from repositories.topic_repository import TopicRepository
 from services.app_service import AppService
 from services.article_service import ArticleService
 from services.note_poster_service import NotePosterService
-from services.search_service import SearchService
 from ui.app_ui import AppUI
 from utils.db_utils import DatabaseManager
 
@@ -36,22 +35,16 @@ def setup_logging():
 
 def init_services():
     """サービスの初期化"""
-    # 設定ファイルがあれば読み込む
-    if os.path.exists(Config.SETTINGS_FILE):
-        settings = Config.load_from_file()
-        # 設定を更新
-        for key, value in settings.items():
-            if hasattr(Config, key):
-                setattr(Config, key, value)
-                # 環境変数も設定
-                os.environ[key] = str(value) if value is not None else ""
-
     # 設定の検証
     try:
         Config.validate()
     except ValueError as e:
-        logging.warning(f"設定に問題があります: {e}")
-        # 設定に問題があっても起動を続行する
+        logging.error(f"設定エラー: {e}")
+        exit(1)
+
+    # 環境変数の設定
+    if Config.SEARCH_ENGINE:
+        os.environ["SEARCH_ENGINE"] = Config.SEARCH_ENGINE
 
     # データベース接続
     db_manager = DatabaseManager(Config.DB_PATH)
@@ -62,7 +55,11 @@ def init_services():
     article_repo = ArticleRepository(db_manager)
 
     # サービス
-    search_service = SearchService(Config.OPENAI_API_KEY)
+    from services.search_service import SearchServiceFactory
+
+    search_service = SearchServiceFactory.create_service(
+        service_type=Config.SEARCH_SERVICE_TYPE, api_key=Config.OPENAI_API_KEY
+    )
     article_service = ArticleService(Config.OPENAI_API_KEY)
 
     # Note投稿サービス（認証情報がある場合のみ）

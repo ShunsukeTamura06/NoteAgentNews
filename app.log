@@ -293,3 +293,236 @@ ValueError: Note投稿サービスが設定されていません
 2025-03-16 20:32:23,838 - root - INFO - 記事タイトル: 三億円事件：日本犯罪史最大のミステリーを追う
 2025-03-16 20:32:23,839 - root - INFO - セクション数: 12
 2025-03-16 20:32:24,687 - root - INFO - noteへのログインを開始します
+2025-03-16 20:55:59,376 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 20:55:59,377 - root - INFO - データベースの初期化が完了しました
+2025-03-16 20:56:00,224 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 20:56:00,311 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 20:56:00,417 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 20:56:32,704 - root - INFO - トピック「立花氏襲撃事件」の情報を検索します
+2025-03-16 20:56:45,398 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 20:58:04,247 - root - INFO - トピック「立花氏襲撃事件」の記事を作成します
+2025-03-16 20:58:17,109 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 20:59:00,902 - root - INFO - トピックID 6 の既存ニュースデータを使用します
+2025-03-16 22:23:50,757 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 22:23:50,758 - root - INFO - データベースの初期化が完了しました
+2025-03-16 22:23:51,458 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 22:23:51,493 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 22:23:51,580 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 22:25:10,677 - root - ERROR - ニュース収集中にエラーが発生しました: 'coroutine' object has no attribute 'sources'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 190, in collect_news
+    news_data = self.app_service.collect_news_for_topic(int(topic_id))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\services\app_service.py", line 123, in collect_news_for_topic
+    created_news = self.news_repo.create(news_data)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\repositories\news_repository.py", line 46, in create
+    for source in news_data.sources
+                  ^^^^^^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'sources'
+2025-03-16 22:42:56,651 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 22:42:56,652 - root - ERROR - 設定エラー: 無効な SEARCH_SERVICE_TYPE: web"    # "web" または "openai。'web' または 'openai' を指定してください。
+2025-03-16 22:43:30,794 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 22:43:30,795 - root - INFO - データベースの初期化が完了しました
+2025-03-16 22:43:31,507 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 22:43:31,536 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 22:43:31,615 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 22:43:42,435 - root - ERROR - ニュース収集中にエラーが発生しました: 'coroutine' object has no attribute 'id'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 192, in collect_news
+    self.current_news_id = news_data.id
+                           ^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'id'
+2025-03-16 23:00:02,355 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 23:00:02,356 - root - INFO - データベースの初期化が完了しました
+2025-03-16 23:00:03,040 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 23:00:03,070 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 23:00:03,560 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 23:00:15,956 - root - INFO - トピック「立花氏襲撃事件」の情報をWeb検索で取得します
+2025-03-16 23:00:15,956 - root - INFO - googleで検索を実行します: 立花氏襲撃事件
+2025-03-16 23:00:16,877 - root - INFO - google検索結果: 5件
+2025-03-16 23:00:21,441 - root - INFO - URLアクセス中: https://news.yahoo.co.jp/articles/1085c3dcb7e7f91f16179547c99e5dc0e4e635cc
+2025-03-16 23:00:28,276 - root - INFO - URLアクセス中: https://www3.nhk.or.jp/news/html/20250315/k10014750361000.html
+2025-03-16 23:00:29,198 - root - INFO - URLアクセス中: https://www.youtube.com/watch?v=5QQX7fMVqiY
+2025-03-16 23:00:30,986 - root - INFO - URLアクセス中: https://www.asahi.com/articles/AST3H1V11T3HUTIL004M.html
+2025-03-16 23:01:01,001 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.asahi.com/articles/AST3H1V11T3HUTIL004M.html", waiting until "load"
+
+2025-03-16 23:01:01,478 - root - INFO - URLアクセス中: https://www.jiji.com/jc/article?k=2025031500389&g=soc
+2025-03-16 23:01:31,484 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.jiji.com/jc/article?k=2025031500389&g=soc", waiting until "load"
+
+2025-03-16 23:01:31,590 - root - INFO - トピック「立花氏襲撃事件」の情報収集が完了しました（情報源: 3件）
+2025-03-16 23:07:05,056 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-16 23:07:05,059 - root - INFO - データベースの初期化が完了しました
+2025-03-16 23:07:05,744 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-16 23:07:05,774 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-16 23:07:05,886 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-16 23:07:15,987 - root - INFO - トピックID 7 の既存ニュースデータを使用します
+2025-03-16 23:08:44,928 - root - INFO - トピック「立花氏襲撃事件」の記事を作成します
+2025-03-16 23:08:59,787 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 23:09:41,323 - root - INFO - 記事「【緊急報告】立花孝志氏襲撃事件の詳細とその影響」を改善します
+2025-03-16 23:09:59,859 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-16 23:09:59,866 - root - ERROR - 記事改善中にエラーが発生しました: object Article can't be used in 'await' expression
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 313, in improve_article
+    improved_article = await self.app_service.improve_article(int(actual_id))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object Article can't be used in 'await' expression
+2025-03-17 07:18:40,764 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-17 07:18:40,766 - root - INFO - データベースの初期化が完了しました
+2025-03-17 07:18:41,503 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-17 07:18:41,525 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-17 07:18:41,536 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-17 07:19:06,465 - root - INFO - トピック「千葉県知事選挙」の情報をWeb検索で取得します
+2025-03-17 07:19:06,466 - root - INFO - googleで検索を実行します: 千葉県知事選挙
+2025-03-17 07:19:07,050 - root - INFO - google検索結果: 5件
+2025-03-17 07:19:07,780 - root - INFO - URLアクセス中: https://www3.nhk.or.jp/news/html/20250316/k10014739141000.html
+2025-03-17 07:19:11,347 - root - INFO - URLアクセス中: /search?num=7
+2025-03-17 07:19:11,356 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL
+Call log:
+  - navigating to "/search?num=7", waiting until "load"
+
+2025-03-17 07:19:11,751 - root - INFO - URLアクセス中: https://www.city.abiko.chiba.jp/shisei/senkyo/chijisen/sokuhou2025/kaihyoukekka.html
+2025-03-17 07:19:12,913 - root - INFO - URLアクセス中: https://www.nhk.or.jp/shutoken/chiba/articles/101/021/31/
+2025-03-17 07:19:13,817 - root - INFO - URLアクセス中: https://www.pref.chiba.lg.jp/senkan/
+2025-03-17 07:19:14,225 - root - INFO - トピック「千葉県知事選挙」の情報収集が完了しました（情報源: 3件）
+2025-03-17 07:19:16,691 - root - INFO - トピック「千葉県知事選挙」の記事を作成します
+2025-03-17 07:19:31,129 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-17 07:21:04,467 - root - INFO - 記事「千葉県知事選挙2025：再選を果たした熊谷俊人氏の挑戦と展望」を改善します
+2025-03-17 07:21:24,270 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-17 07:21:26,595 - root - INFO - 記事「千葉県知事選挙2025：再選を果たした熊谷俊人氏の挑戦と展望」をNoteに投稿します
+2025-03-17 07:21:26,596 - root - INFO - Markdown記事を解析中
+2025-03-17 07:21:26,597 - root - INFO - 記事タイトル: 千葉県知事選挙2025：再選を果たした熊谷俊人氏の挑戦と展望
+2025-03-17 07:21:26,597 - root - INFO - セクション数: 20
+2025-03-17 07:21:27,315 - root - INFO - noteへのログインを開始します
+2025-03-18 21:56:04,706 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-18 21:56:04,708 - root - INFO - データベースの初期化が完了しました
+2025-03-18 21:56:05,391 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-18 21:56:05,480 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-18 21:56:05,702 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-18 21:56:50,168 - root - INFO - トピック「韓国の若者による政治デモ」の情報をWeb検索で取得します
+2025-03-18 21:56:50,179 - root - INFO - googleで検索を実行します: 韓国の若者による政治デモ
+2025-03-18 21:56:51,379 - root - INFO - google検索結果: 10件
+2025-03-18 21:56:54,878 - root - INFO - URLアクセス中: https://www.ntv.co.jp/zero/kikikomi/articles/67l6v2vxf4ughy5o.html
+2025-03-18 21:57:00,720 - root - INFO - URLアクセス中: https://www.yomiuri.co.jp/column/wideangle/20250127-OYT8T50001/
+2025-03-18 21:57:30,728 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.yomiuri.co.jp/column/wideangle/20250127-OYT8T50001/", waiting until "load"
+
+2025-03-18 21:57:31,250 - root - INFO - URLアクセス中: https://s-newscommons.com/article/6594
+2025-03-18 21:57:46,072 - root - INFO - URLアクセス中: https://www.asahi.com/articles/ASSDG3JJCSDGUHBI00VM.html
+2025-03-18 21:58:16,093 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.asahi.com/articles/ASSDG3JJCSDGUHBI00VM.html", waiting until "load"
+
+2025-03-18 21:58:16,606 - root - INFO - URLアクセス中: https://diamond.jp/articles/-/359024?page=2
+2025-03-18 21:58:21,264 - root - INFO - URLアクセス中: https://japan.hani.co.kr/arti/politics/51880.html
+2025-03-18 21:58:26,722 - root - INFO - URLアクセス中: https://www.nikkei.com/article/DGKKZO85277530V01C24A2FF8000/
+2025-03-18 21:58:28,962 - root - INFO - URLアクセス中: https://www.youtube.com/watch?v=NzT9qGcProg
+2025-03-18 21:58:31,595 - root - INFO - URLアクセス中: https://www.tokyominpo.com/2025/02/22/%E8%8B%A5%E8%80%85%E3%81%8C%E5%A4%89%E3%81%88%E3%81%9F%E9%9F%93%E5%9B%BD%E3%81%AE%E3%83%87%E3%83%A2%E3%80%80%E6%B2%BB%E5%AE%89%E7%B6%AD%E6%8C%81%E6%B3%95%E3%80%80%E5%9B%BD%E8%B3%A0%E5%90%8C%E7%9B%9F/
+2025-03-18 21:58:35,442 - root - INFO - URLアクセス中: https://jbpress.ismedia.jp/articles/-/85436
+2025-03-18 21:58:41,098 - root - INFO - トピック「韓国の若者による政治デモ」の情報収集が完了しました（情報源: 8件）
+2025-03-18 21:59:06,106 - root - INFO - トピック「韓国の若者による政治デモ」の記事を作成します
+2025-03-18 22:00:09,907 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-18 22:01:01,675 - root - INFO - トピック「韓国の若者による政治デモ(2025年3月)」の情報をWeb検索で取得します
+2025-03-18 22:01:01,676 - root - INFO - googleで検索を実行します: 韓国の若者による政治デモ(2025年3月)
+2025-03-18 22:01:02,262 - root - INFO - google検索結果: 10件
+2025-03-18 22:01:02,649 - root - INFO - URLアクセス中: https://www.tokyominpo.com/2025/02/22/%E8%8B%A5%E8%80%85%E3%81%8C%E5%A4%89%E3%81%88%E3%81%9F%E9%9F%93%E5%9B%BD%E3%81%AE%E3%83%87%E3%83%A2%E3%80%80%E6%B2%BB%E5%AE%89%E7%B6%AD%E6%8C%81%E6%B3%95%E3%80%80%E5%9B%BD%E8%B3%A0%E5%90%8C%E7%9B%9F/
+2025-03-18 22:01:07,935 - root - INFO - URLアクセス中: https://www.sakigake.jp/news/article/20250315CO0110/
+2025-03-18 22:01:37,955 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.sakigake.jp/news/article/20250315CO0110/", waiting until "load"
+
+2025-03-18 22:01:38,480 - root - INFO - URLアクセス中: https://www.yomiuri.co.jp/column/wideangle/20250127-OYT8T50001/
+2025-03-18 22:02:08,499 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.yomiuri.co.jp/column/wideangle/20250127-OYT8T50001/", waiting until "load"
+
+2025-03-18 22:02:08,970 - root - INFO - URLアクセス中: https://www.acc21.org/news20250207/
+2025-03-18 22:02:11,387 - root - INFO - URLアクセス中: https://www.okinawatimes.co.jp/articles/-/1544891
+2025-03-18 22:02:41,400 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.okinawatimes.co.jp/articles/-/1544891", waiting until "load"
+
+2025-03-18 22:02:41,891 - root - INFO - URLアクセス中: https://toyokeizai.net/articles/-/865095?display=b
+2025-03-18 22:02:47,540 - root - INFO - URLアクセス中: https://go2senkyo.com/seijika/187675/posts/1070811
+2025-03-18 22:02:50,822 - root - INFO - URLアクセス中: https://www.kanaloco.jp/news/international/article-1155940.html
+2025-03-18 22:02:55,549 - root - INFO - URLアクセス中: https://www.nhk.jp/p/catchsekai/ts/KQ2GPZPJWM/blog/bl/pK4Agvr4d1/bp/p0gWP6pPj0/
+2025-03-18 22:02:56,606 - root - INFO - URLアクセス中: https://s-newscommons.com/article/6594
+2025-03-18 22:03:01,864 - root - INFO - トピック「韓国の若者による政治デモ(2025年3月)」の情報収集が完了しました（情報源: 7件）
+2025-03-18 22:03:34,265 - root - INFO - トピック「韓国の若者による政治デモ(2025年3月)」の記事を作成します
+2025-03-18 22:04:08,328 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-18 22:04:51,400 - root - INFO - 記事「韓国の若者たちがつくり出す変革の波：戒厳令とデモの背景」を改善します
+2025-03-18 22:05:14,457 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-18 22:05:19,730 - root - INFO - 記事「韓国の若者たちがつくり出す変革の波：戒厳令とデモの背景」をNoteに投稿します
+2025-03-18 22:05:19,730 - root - INFO - Markdown記事を解析中
+2025-03-18 22:05:19,730 - root - INFO - 記事タイトル: 韓国の若者たちがつくり出す変革の波：戒厳令とデモの背景
+2025-03-18 22:05:19,731 - root - INFO - セクション数: 14
+2025-03-18 22:05:20,582 - root - INFO - noteへのログインを開始します
+2025-03-21 21:20:08,035 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-21 21:20:08,040 - root - INFO - データベースの初期化が完了しました
+2025-03-21 21:20:08,832 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-21 21:20:08,856 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-21 21:20:08,937 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-21 21:20:56,927 - root - ERROR - 全プロセス実行中にエラーが発生しました: 'coroutine' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\shuns\OneDrive\デスクトップ\ローカル作業用\NoteAgentNews\ui\app_ui.py", line 424, in run_full_process
+    article = result.get("improved_article") or result.get("article")
+              ^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'get'
+2025-03-21 21:21:40,590 - root - INFO - トピックID 3 の既存ニュースデータを使用します
+2025-03-21 21:22:11,207 - root - INFO - トピック「石破首相の商品券配布問題」の情報をWeb検索で取得します
+2025-03-21 21:22:11,208 - root - INFO - googleで検索を実行します: 石破首相の商品券配布問題
+2025-03-21 21:22:12,086 - root - INFO - google検索結果: 10件
+2025-03-21 21:22:16,658 - root - INFO - URLアクセス中: https://mainichi.jp/articles/20250321/k00/00m/010/364000c
+2025-03-21 21:22:44,305 - root - INFO - URLアクセス中: https://www.asahi.com/articles/AST3M1JKMT3MUZPS001M.html
+2025-03-21 21:22:49,600 - root - INFO - URLアクセス中: https://www.jiji.com/jc/article?k=2025031901253&g=pol
+2025-03-21 21:23:19,612 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.jiji.com/jc/article?k=2025031901253&g=pol", waiting until "load"
+
+2025-03-21 21:23:20,058 - root - INFO - URLアクセス中: http://jcp.or.jp/akahata/aik24/2025-03-19/2025031903_01_0.html
+2025-03-21 21:23:22,322 - root - INFO - URLアクセス中: https://www.yomiuri.co.jp/politics/20250319-OYT1T50189/
+2025-03-21 21:23:52,339 - root - ERROR - ページアクセス中にエラーが発生しました: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.yomiuri.co.jp/politics/20250319-OYT1T50189/", waiting until "load"
+
+2025-03-21 21:23:52,829 - root - INFO - URLアクセス中: https://news.yahoo.co.jp/articles/c5b5ff4646dc476998442b9b01b0fdb6ebc2b832
+2025-03-21 21:23:54,684 - root - INFO - URLアクセス中: https://www3.nhk.or.jp/news/html/20250317/k10014751541000.html
+2025-03-21 21:23:55,701 - root - INFO - URLアクセス中: https://mainichi.jp/articles/20250319/k00/00m/010/121000c
+2025-03-21 21:24:22,854 - root - INFO - URLアクセス中: https://www.asahi.com/articles/AST3M3RLFT3MUTFK00KM.html
+2025-03-21 21:24:50,271 - root - INFO - URLアクセス中: https://www.nikkei.com/topics/25031302
+2025-03-21 21:24:51,695 - root - INFO - トピック「石破首相の商品券配布問題」の情報収集が完了しました（情報源: 8件）
+2025-03-21 21:24:54,450 - root - INFO - トピック「石破首相の商品券配布問題」の記事を作成します
+2025-03-21 21:26:00,820 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 21:26:48,256 - root - INFO - 記事「商品券配布問題：石破首相をめぐる政治騒動の全貌」を改善します
+2025-03-21 21:27:12,516 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-03-21 21:27:24,742 - root - INFO - 記事「商品券配布問題：石破首相をめぐる政治騒動の全貌」をNoteに投稿します
+2025-03-21 21:27:24,743 - root - INFO - Markdown記事を解析中
+2025-03-21 21:27:24,743 - root - INFO - 記事タイトル: 商品券配布問題：石破首相を巡る政治騒動の全貌
+2025-03-21 21:27:24,743 - root - INFO - セクション数: 23
+2025-03-21 21:27:25,954 - root - INFO - noteへのログインを開始します
+2025-03-29 14:04:13,315 - root - INFO - ニュース記事自動生成システムを起動します
+2025-03-29 14:04:13,324 - root - INFO - データベースの初期化が完了しました
+2025-03-29 14:04:14,048 - httpx - INFO - HTTP Request: GET http://127.0.0.1:7860/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-03-29 14:04:14,101 - httpx - INFO - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-03-29 14:04:14,139 - httpx - INFO - HTTP Request: HEAD http://127.0.0.1:7860/ "HTTP/1.1 200 OK"
+2025-03-29 14:05:13,331 - root - INFO - トピック「OpenAIの最新情報」の情報をWeb検索で取得します
+2025-03-29 14:05:13,331 - root - INFO - googleで検索を実行します: OpenAIの最新情報
+2025-03-29 14:05:14,047 - root - INFO - google検索結果: 10件
+2025-03-29 14:05:17,815 - root - INFO - URLアクセス中: https://openai.com/ja-JP/news/
+2025-03-29 14:05:21,129 - root - INFO - URLアクセス中: https://wired.jp/tag/openai/
+2025-03-29 14:05:25,090 - root - INFO - URLアクセス中: https://www.nikkei.com/topics/23012400
+2025-03-29 14:05:26,949 - root - INFO - URLアクセス中: https://openai.com/ja-JP/news/product-releases/
+2025-03-29 14:05:27,499 - root - INFO - URLアクセス中: https://openai.com/ja-JP/index/spring-update/
+2025-03-29 14:05:28,125 - root - INFO - URLアクセス中: https://prtimes.jp/topics/keywords/OpenAI
+2025-03-29 14:05:29,913 - root - INFO - URLアクセス中: https://openai.com/ja-JP/
+2025-03-29 14:05:30,439 - root - INFO - URLアクセス中: https://learn.microsoft.com/ja-jp/azure/ai-services/openai/whats-new
+2025-03-29 14:05:31,467 - root - INFO - URLアクセス中: https://exawizards.com/column/article/chatgpt/gpt-4o/
+2025-03-29 14:05:33,517 - root - INFO - URLアクセス中: https://nobdata.co.jp/report/chatgpt/27/
+2025-03-29 14:05:34,518 - root - INFO - トピック「OpenAIの最新情報」の情報収集が完了しました（情報源: 6件）
+2025-03-29 14:05:40,216 - root - INFO - トピック「OpenAIの最新情報」の記事を作成します
+2025-03-29 14:06:20,419 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"

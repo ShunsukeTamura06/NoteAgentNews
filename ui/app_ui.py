@@ -169,7 +169,7 @@ class AppUI:
             )
             return []
 
-    def collect_news(self, topic_id: Optional[int] = None) -> Dict[str, Any]:
+    async def collect_news(self, topic_id: Optional[int] = None) -> Dict[str, Any]:
         """
         ニュース収集UIハンドラ
 
@@ -187,7 +187,9 @@ class AppUI:
             if not topic_id:
                 return {"success": False, "message": "トピックを選択してください"}
 
-            news_data = self.app_service.collect_news_for_topic(int(topic_id))
+            # ここで await を追加して非同期処理の完了を待つ
+            news_data = await self.app_service.collect_news_for_topic(int(topic_id))
+
             # 現在のニュースIDを保存
             self.current_news_id = news_data.id
             # トピックIDも更新
@@ -205,7 +207,27 @@ class AppUI:
             )
             return {"success": False, "message": f"エラー: {str(e)}"}
 
-    def create_article(self, topic_id: Optional[int] = None) -> Dict[str, Any]:
+    def format_topic_status(self, result):
+        """トピック作成結果をフォーマット"""
+        if result.get("success"):
+            return f"✅ {result['message']}"
+        else:
+            return f"❌ {result['message']}"
+
+    async def collect_news_with_progress(self, topic_id):
+        """
+        プログレスバー付きのニュース収集関数
+
+        Args:
+            topic_id: トピックID
+
+        Returns:
+            str: 結果メッセージ
+        """
+        result = await self.collect_news(topic_id)
+        return self.format_topic_status(result)
+
+    async def create_article(self, topic_id: Optional[int] = None) -> Dict[str, Any]:
         """
         記事作成UIハンドラ
 
@@ -223,7 +245,9 @@ class AppUI:
             if not topic_id:
                 return {"success": False, "message": "トピックを選択してください"}
 
-            article = self.app_service.create_article_for_topic(int(topic_id))
+            # await を追加して非同期処理の完了を待つ
+            article = await self.app_service.create_article_for_topic(int(topic_id))
+
             # 現在の記事IDを保存
             self.current_article_id = article.id
             # トピックIDも更新
@@ -240,7 +264,7 @@ class AppUI:
             logging.error(f"記事作成中にエラーが発生しました: {str(e)}", exc_info=True)
             return {"success": False, "message": f"エラー: {str(e)}"}
 
-    def improve_article(
+    async def improve_article(
         self,
         article_id: Optional[Union[int, Dict[str, Any]]] = None,
         topic_id: Optional[int] = None,
@@ -730,12 +754,6 @@ class AppUI:
             )
 
             # ステップ実行タブ
-            def format_topic_status(result):
-                """トピック作成結果をフォーマット"""
-                if result.get("success"):
-                    return f"✅ {result['message']}"
-                else:
-                    return f"❌ {result['message']}"
 
             def update_topic_info(topic_id):
                 """トピック情報を更新"""
@@ -784,7 +802,7 @@ class AppUI:
             # トピック作成
             create_topic_btn.click(
                 fn=lambda title, desc: (
-                    format_topic_status(self.create_topic(title, desc)),
+                    self.format_topic_status(self.create_topic(title, desc)),
                     self.current_topic_id,
                 ),
                 inputs=[step_title_input, step_desc_input],
@@ -809,30 +827,33 @@ class AppUI:
 
             # ニュース収集
             collect_news_btn.click(
-                fn=lambda topic_id: format_topic_status(self.collect_news(topic_id)),
+                fn=self.collect_news_with_progress,
                 inputs=current_topic_id,
                 outputs=news_status,
             )
 
             # 記事作成
-            def create_article_and_update(topic_id):
-                result = self.create_article(topic_id)
-                message = format_topic_status(result)
+            async def create_article_with_progress(topic_id):
+                """
+                記事作成関数（プログレスバー付き）
+                """
+                result = await self.create_article(topic_id)
+                message = self.format_topic_status(result)
                 content = (
                     result.get("article_content", "") if result.get("success") else ""
                 )
                 return message, content
 
             create_article_btn.click(
-                fn=create_article_and_update,
+                fn=create_article_with_progress,
                 inputs=current_topic_id,
                 outputs=[article_status, step_article_output],
             )
 
             # 記事改善
-            def improve_article_with_topic(topic_id):
-                result = self.improve_article(topic_id=topic_id)
-                message = format_topic_status(result)
+            async def improve_article_with_topic(topic_id):
+                result = await self.improve_article(topic_id=topic_id)
+                message = self.format_topic_status(result)
                 content = (
                     result.get("improved_content", "") if result.get("success") else ""
                 )
@@ -847,7 +868,7 @@ class AppUI:
             # Note投稿
             def post_to_note_with_topic(topic_id):
                 result = self.post_to_note(topic_id=topic_id)
-                return format_topic_status(result)
+                return self.format_topic_status(result)
 
             post_note_btn.click(
                 fn=post_to_note_with_topic,

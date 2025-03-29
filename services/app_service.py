@@ -91,7 +91,7 @@ class AppService:
         """
         return self.topic_repo.get_all()
 
-    def collect_news_for_topic(self, topic_id: int) -> NewsData:
+    async def collect_news_for_topic(self, topic_id: int) -> NewsData:
         """
         トピックに関するニュースを収集
 
@@ -119,7 +119,7 @@ class AppService:
             return existing_news
 
         # 新規にニュースデータを収集
-        news_data = self.search_service.search_topic(topic)
+        news_data = await self.search_service.search_topic(topic)
         created_news = self.news_repo.create(news_data)
 
         # 実行状態を更新
@@ -130,7 +130,7 @@ class AppService:
 
         return created_news
 
-    def create_article_for_topic(self, topic_id: int) -> Article:
+    async def create_article_for_topic(self, topic_id: int) -> Article:
         """
         トピックの記事を作成
 
@@ -144,48 +144,15 @@ class AppService:
         if not topic:
             raise ValueError(f"トピックID {topic_id} が見つかりません")
 
-        # ニュースデータの確認と収集
+        # 既存のニュースデータを取得
         news_data = self.news_repo.get_by_topic_id(topic_id)
         if not news_data:
             # ニュースデータがなければ収集
-            news_data = self.collect_news_for_topic(topic_id)
+            news_data = await self.collect_news_for_topic(topic_id)
 
-        # 既存の記事を確認
-        existing_articles = self.article_repo.get_by_topic_id(topic_id)
-        if existing_articles:
-            # 最新の記事を返す
-            latest_article = existing_articles[0]
-
-            # 実行状態を更新
-            self.step_status["topic_created"] = True
-            self.current_topic_id = topic_id
-            self.step_status["news_collected"] = True
-            self.current_news_id = news_data.id
-            self.step_status["article_created"] = True
-            self.current_article_id = latest_article.id
-            self.step_status["article_improved"] = (
-                latest_article.improved_content is not None
-            )
-            self.step_status["article_published"] = latest_article.status == "published"
-
-            logging.info(
-                f"トピックID {topic_id} の既存記事を使用します（ID: {latest_article.id}）"
-            )
-            return latest_article
-
-        # 新規に記事を作成
-        article = self.article_service.create_article_from_news(topic, news_data)
-        created_article = self.article_repo.create(article)
-
-        # 実行状態を更新
-        self.step_status["topic_created"] = True
-        self.current_topic_id = topic_id
-        self.step_status["news_collected"] = True
-        self.current_news_id = news_data.id
-        self.step_status["article_created"] = True
-        self.current_article_id = created_article.id
-
-        return created_article
+        # 記事を作成
+        article = await self.article_service.create_article_from_news(topic, news_data)
+        return self.article_repo.create(article)
 
     def improve_article(self, article_id: int) -> Article:
         """
@@ -279,7 +246,7 @@ class AppService:
 
         return success
 
-    def run_full_process(
+    async def run_full_process(
         self,
         topic_title: str,
         topic_description: Optional[str] = None,
@@ -313,25 +280,25 @@ class AppService:
             result["messages"].append(f"トピック「{topic.title}」を作成しました")
 
             # 2. ニュース収集
-            news_data = self.collect_news_for_topic(topic.id)
+            news_data = await self.collect_news_for_topic(topic.id)
             result["news_data"] = news_data
             result["messages"].append(
                 f"トピック「{topic.title}」の情報を収集しました（情報源: {len(news_data.sources)}件）"
             )
 
             # 3. 記事作成
-            article = self.create_article_for_topic(topic.id)
+            article = await self.create_article_for_topic(topic.id)
             result["article"] = article
             result["messages"].append(f"記事「{article.title}」を作成しました")
 
             # 4. 記事改善
-            improved_article = self.improve_article(article.id)
+            improved_article = await self.improve_article(article.id)
             result["improved_article"] = improved_article
             result["messages"].append(f"記事「{improved_article.title}」を改善しました")
 
             # 5. Noteに投稿（オプション）
             if post_to_note and self.note_poster_service:
-                note_posted = self.post_article_to_note(improved_article.id)
+                note_posted = await self.post_article_to_note(improved_article.id)
                 result["note_posted"] = note_posted
                 if note_posted:
                     result["messages"].append(
